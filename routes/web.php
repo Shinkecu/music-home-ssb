@@ -1,12 +1,12 @@
 <?php
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Controllers\CategoryController;
-use App\Controllers\UserController;
-use App\Controllers\ProductController;
-use App\Controllers\OrderController;
-use App\Controllers\RegisterController;
-use App\Controllers\CartController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\CartController;
 
 use App\Product;
 use App\Category;
@@ -54,3 +54,19 @@ Route::post('/catalog/filter', function (Request $request){
     }
     return view('catalog', ['products'=>$products, 'categories'=>Category::all()]);
 })->name('catalog.filter');
+
+Route::middleware(['guest'])->group(function() {
+    Route::get('/register', [RegisterController::class, 'create'])->name('auth.create');
+    Route::post('/register', [RegisterController::class, 'store'])->name('auth.store');
+
+    Route::get('/login',[RegisterController::class, 'loginform'])->name('auth.loginform');
+    Route::post('/login',[RegisterController::class, 'login'])->name('auth.login');
+});
+
+Route::middleware(['auth'])->group(function() {
+    Route::get('/logout', [RegisterController::class, 'logout'])->name('auth.logout');
+});
+
+Route::middleware(['admin'])->group(function() {
+    Route::view('/admin', 'admin.layout');
+});

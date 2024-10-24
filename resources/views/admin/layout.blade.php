@@ -14,7 +14,7 @@
                 <div class="container-fluid">
                   <a class="navbar-brand" href="#">
                     <img src="{{asset('/img/logo.png')}}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-                    Music-house
+                    Music-house / Панель администратора
                   </a>
                 </div>
               </nav>
@@ -41,8 +41,8 @@
                 </li>
                 @endguest
                 @auth
-                    <a href="{{route('auth.logout')}}" class="btn btn-outline btn-primary">Выход</a>
-                @endauth
+                <a href="{{route('auth.logout')}}" class="btn btn-outline btn-primary">Выход</a>
+            @endauth
             </ul>
           </div>
         </div>
