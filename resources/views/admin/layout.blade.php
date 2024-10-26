@@ -32,17 +32,11 @@
                 <li class="nav-item">
                     <a class="nav-link active" href={{route('contacts')}}>Контакты</a>
                 </li>
-                @guest
                 <li class="nav-item">
-                    <a class="nav-link active" href={{route('auth.create')}}>Зарегистрироваться</a>
+                    <a class="nav-link active" aria-current="page" href={{route('categories.index')}}>Категории товаров</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href={{route('auth.loginform')}}>Войти</a>
-                </li>
-                @endguest
-                @auth
                 <a href="{{route('auth.logout')}}" class="btn btn-outline btn-primary">Выход</a>
-            @endauth
+
             </ul>
           </div>
         </div>

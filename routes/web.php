@@ -69,4 +69,5 @@ Route::middleware(['auth'])->group(function() {
 
 Route::middleware(['admin'])->group(function() {
     Route::view('/admin', 'admin.layout');
+    Route::resource('admin/categories', CategoryController::class);
 });
