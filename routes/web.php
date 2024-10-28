@@ -70,4 +70,6 @@ Route::middleware(['auth'])->group(function() {
 Route::middleware(['admin'])->group(function() {
     Route::view('/admin', 'admin.layout');
     Route::resource('admin/categories', CategoryController::class);
+    Route::resource('admin/products', ProductController::class);
+    Route::post('admin/filter', [ProductController::class, 'filter'])->name('admin.products.filer');
 });

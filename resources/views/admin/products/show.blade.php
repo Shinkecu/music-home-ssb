@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('admin.layout')
 
 @section('content')
 
@@ -16,12 +16,16 @@
     </ul>
     <div class="card-body">
         @auth
-        <a href="#" class="btn btn-primary">В корзину</a>
+        <a href="{{route('products.edit', $product)}}" class="btn btn-primary">Изменить</a>
         @endauth
-        @guest
-        <a href="{{route('auth.create')}}" class="btn btn-primary">Зарегестрироваться и купить</a>
-        @endguest
 
+        <form method="POST" action="{{route('products.destroy', $product)}}">
+            @csrf
+            @method('DELETE')
+            <button class='btn btn-primary' type='submit'>
+                Удалить
+            </button>
+        </form>
     </div>
   </div>
 
